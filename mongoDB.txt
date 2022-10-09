@@ -1,0 +1,47 @@
+[{
+ $project: {
+  Department: 1,
+  EmployeeCount: 1,
+  Attrition: 1,
+  Age: 1,
+  Gender: 1,
+  HourlyRate: 1,
+  EnvironmentSatisfaction: 1
+ }
+}, {
+ $match: {
+  Attrition: {
+   $gt: 'YES'
+  },
+  EnvironmentSatisfaction: {
+   $gt: 1
+  }
+ }
+}, {
+ $sort: {
+  HourlyRate: -1
+ }
+}, {
+ $group: {
+  _id: '$Department',
+  fieldN: {
+   $sum: '$EmployeeCount'
+  }
+ }
+}]
+
+
+
+/**
+Employees who are highly satisfied with their 
+work environment have not
+resigned
+**/
+/**
+ * The sort shows that the research department has
+ * longer hourly rate
+ */
+/** 
+The research department has the 
+largest number of resignations
+*/
